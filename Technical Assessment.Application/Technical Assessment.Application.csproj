@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Technical_Assessment.Application</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commands\**" />
+    <Compile Remove="Mappers\**" />
+    <Compile Remove="Queries\**" />
+    <Compile Remove="Responses\**" />
+    <EmbeddedResource Remove="Commands\**" />
+    <EmbeddedResource Remove="Mappers\**" />
+    <EmbeddedResource Remove="Queries\**" />
+    <EmbeddedResource Remove="Responses\**" />
+    <None Remove="Commands\**" />
+    <None Remove="Mappers\**" />
+    <None Remove="Queries\**" />
+    <None Remove="Responses\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Technical Assessment.Core\Technical Assessment.Core.csproj" />
+    <ProjectReference Include="..\Technical Assessment.Infrastructure\Technical Assessment.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
