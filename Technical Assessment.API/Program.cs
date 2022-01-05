@@ -65,7 +65,7 @@ app.Run("http://localhost:3000");
 async Task EnsureDb(IServiceProvider services)
 {
     using var db = services.CreateScope().ServiceProvider.GetRequiredService<SqlConnection>();
-    var sql = $@"DROP TABLE SMSs; IF OBJECT_ID(N'SMSs', N'U') is null
+    var sql = $@"IF OBJECT_ID(N'SMSs', N'U') is null
     CREATE TABLE SMSs (
         {nameof(SMS.ID)} int IDENTITY(1, 1) NOT NULL PRIMARY KEY,
         {nameof(SMS.PhoneNumber)} varchar(15) NOT NULL,

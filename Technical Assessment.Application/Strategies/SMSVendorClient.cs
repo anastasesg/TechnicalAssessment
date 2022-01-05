@@ -6,20 +6,13 @@ namespace Technical_Assessment.Application.Strategies
     public class SMSVendorClient
     {
         private ISMSVendor smsVendor;
-
-        public SMSVendorClient(SMS sms)
+        private readonly Dictionary<string, ISMSVendor> smsVendorList = new()
         {
-            if (sms.PhoneNumber[..3] == "+30")
-            {
-                smsVendor = new SMSVendorGR();
-            } else if (sms.PhoneNumber[..4] == "+357")
-            {
-                smsVendor = new SMSVendorCY();
-            } else
-            {
-                smsVendor = new SMSVendorRest();
-            }
-        }
+            { "+30", new SMSVendorGR() },
+            { "+357", new SMSVendorCY() },
+        };
+
+        public SMSVendorClient(SMS sms) => smsVendor = smsVendorList.FirstOrDefault(smsVendorItem => smsVendorItem.Key == sms.PhoneNumber.Split(' ')[0]).Value ?? new SMSVendorRest();
 
         public async Task<string> Send(SMS sms, SMSRepository repository)
         {
